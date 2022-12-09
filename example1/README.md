@@ -1,29 +1,26 @@
-# Dockerize a simple Python script with third-party modules
-
-We differ between:
-
-- Dockerfile: Blueprint for building images
-- Image: Template for running containers
-- Container: Running process with the packaged project
-
 ## 1. Build the Docker image
+Make sure you are in the project path where docker-compose.yml is
 
 ```console
-$ docker build -t python-imdb . 
+$ docker-compose build . 
 ```
-
 ## 2. Run the Docker image (starts the container)
 
-Without user input:
+```console
+$ docker-compose up
+```
+## 3. Run test script
+If you want user input (run test script in [test.py](./test.py)):
 
 ```console
-$ docker run python-imdb
+$ python test.py
 ```
+## 4. Verify the result
+According to a probability threshold of 0.5, real names with high confidence were classified as Real names, if the probability was 0.5 or more, otherwise they would be classified as Fake names (real names with low confidence).
 
-If you want user input (comment out the `break` in [main.py](./main.py)):
+## 5. Close Docker image
 
 ```console
-$ docker run -t -i python-imdb
+$ docker-compose down
 ```
 
--i: interactive, -t: pseudo terminal
